@@ -32,12 +32,9 @@ def webhook():
 
 def makeWebhookResult(req):
     if req.get("result").get("action") == "myNameIsHanoma":
-        return { "speech" : "",
-        "displayText": "",
-        "data": {},
-        "contextOut": [],
-        "source": "prof-3abqarino",
-        "followupEvent": {"name":"c_event","data":{"user":"Hanomaaaaaaaaaa"}}
+        return { "speech" : "Hello, it's me..!",
+        "displayText": "hanoma is here :D ",
+        "source": "prof-3abqarino"
         }
     else:
         return {}
