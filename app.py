@@ -50,7 +50,7 @@ def getDB():
     cur.execute('''SELECT * from "user" where ID = 1''')
     rows = cur.fetchall()
     for row in rows:
-        return row[0]+" "+row[1]+" "+row[2] 
+        return str(row[0])+" "+row[1]+" "+str(row[2]) 
     conn.close()
 
 
