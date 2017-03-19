@@ -7,6 +7,7 @@ import os
 from flask import Flask
 from flask import request
 from flask import make_response
+import psycopg2
 
 
 # Flask app should start in global layout
@@ -32,12 +33,25 @@ def webhook():
 
 def makeWebhookResult(req):
     if req.get("result").get("action") == "myNameIsHanoma":
-        return { "speech" : "Hello, it's me..!",
-        "displayText": "hanoma is here :D ",
-        "source": "prof-3abqarino"
+        str = getDB()
+        return { "speech" : str,
+        "displayText": str,
+        "source": "TestGP"
         }
     else:
         return {}
+
+def getDB():
+
+
+    conn = psycopg2.connect(database="d8892l088pogrv", user="vrohnqnmsxxafb", password="4a1b7ec8d80b8d7a0223134363005eb4075c127faead65eba2c672a3675189ba", host="ec2-54-235-153-124.compute-1.amazonaws.com", port="5432")
+
+    cur = conn.cursor()
+    cur.execute('''SELECT * from "user" where ID = 1''')
+    rows = cur.fetchall()
+    for row in rows:
+        return row[0]+" "+row[1]+" "+row[2] 
+    conn.close()
 
 
 
