@@ -33,7 +33,7 @@ def webhook():
 
 def makeWebhookResult(req):
     print(req)
-    print(req.text)
+    print(req.text())
     newdata = json.loads(req.text())
     print(newdata)
     if req.get("result").get("action") == "myNameIsHanoma":
